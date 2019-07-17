@@ -1,0 +1,53 @@
+<title>Number Guessing Game</title>
+<div id= "message">Number Guessing Game (1 - 10) <br/> You have 10 times to guess</div>
+<div id= "guessedNumbers"></div>
+<input type="number" id="number"/>
+<button id="guessBtn">Click Me</button>
+
+<script>
+	let count = 10;
+	let result = Math.round(Math.random()* 10);
+	console.log(result);
+	let button = document.getElementById('guessBtn')
+	button.addEventListener('click', function() {
+		let guessInput = document.getElementById('number');
+		let userGuess= guessInput.value;
+		let messageDiv = document.getElementById('message');
+		let guessedNumber = document.getElementById('guessedNumbers');
+		let guessText = guessedNumber.innerHTML;
+
+		if (userGuess > result)
+		{
+			count -=1;
+			messageDiv.innerHTML = "Sorry your guess is too high, guess lower. You have " + count + " guesses left";
+
+			guessedNumber.innerHTML = guessText + userGuess +"<br/>"; 
+			messageDiv.style.color ='red';
+			
+		}
+		else if (userGuess < result)
+		{
+			count -=1;
+			messageDiv.innerHTML = "Sorry your guess is too low, guess higher. You have " + count + " guesses left";
+			guessedNumber.innerHTML = guessText + userGuess +"<br/>"; 
+			messageDiv.style.color ='red';
+		}
+
+		else 
+		{
+			messageDiv.innerHTML = "Congratulations!! You guessed correctly.";
+			guessedNumber.innerHTML = guessText + userGuess +"<br/>";
+			messageDiv.style.color ='green';
+		}
+		if (count == 0)
+		{
+			number.disabled = true;
+			guessBtn.disabled = true;
+			messageDiv.innerHTML = "GAME OVER";
+			messageDiv.style.color ='red';
+		}
+		console.log(count);
+
+
+	});
+</script>
